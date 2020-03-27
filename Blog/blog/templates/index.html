@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>My Blog</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=B612+Mono|Cabin:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=B612+Mono|Cabin:400,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/open-iconic-bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific-popup.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/aos.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ionicons.min.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-datepicker.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.timepicker.css') }}">
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/flaticon.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/icomoon.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style1.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
+      <!--------------------------------------------------------------------------------------------------------------->
+
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='fonts/icomoon/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery-ui.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.theme.default.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.theme.default.min.css') }}">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.fancybox.min.css') }}">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-datepicker.css') }}">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='fonts/flaticon/font/flaticon.css') }}">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/aos.css') }}">
+  <link href="{{ url_for('static', filename='css/jquery.mb.YTPlayer.min.css') }}" media="all" rel="stylesheet" type="text/css">
+
+
+
+
+      <!--------------------------------------------------------------------------------------------------------------->
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+  <div class="site-wrap">
+
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+
+
+
+    <div class="header-top">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-12 col-lg-6 d-flex">
+            <a href="index.html" class="site-logo">My Blog</a>
+
+            <a href="#" class="ml-auto d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black"><span
+                class="icon-menu h3"></span></a>
+
+          </div>
+          <div class="col-12 col-lg-6 ml-auto d-flex">
+            <div class="ml-md-auto top-social d-none d-lg-inline-block">
+            </div>
+            <form action="#" class="search-form d-inline-block">
+
+              <div class="d-flex">
+                <input type="email" class="form-control" placeholder="Search...">
+                <button type="submit" class="btn btn-primary" ><span class="icon-search"></span></button>
+              </div>
+            </form>
+
+
+          </div>
+          <div class="col-6 d-block d-lg-none text-right">
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <div class="site-navbar py-2 js-sticky-header site-navbar-target d-none pl-0 d-lg-block" role="banner">
+
+      <div class="container">
+        <div class="d-flex align-items-center">
+
+          <div class="mr-auto">
+            <nav class="site-navigation position-relative text-right" role="navigation">
+              <ul class="site-menu main-menu js-clone-nav mr-auto d-none pl-0 d-lg-block">
+                <li class="active">
+                  <a href="{{ url_for('index') }}" class="nav-link text-left">Home</a>
+                </li>
+                {% if not session.username %}
+                <li>
+                  <a href="{{ url_for('login') }}" class="nav-link text-left">Login</a>
+                </li>
+                <li>
+                  <a href="{{ url_for('register') }}" class="nav-link text-left">Register</a>
+                </li>
+                {% else %}
+                <li>
+                  <a href="{{ url_for('categorie') }}" class="nav-link text-left">Catégories</a>
+                </li>
+                <li>
+                    <a href="{{ url_for('add_post') }}" class="nav-link text-left">Poster</a>
+                </li>
+                <li>
+                  <a href="{{ url_for('logout') }}" class="nav-link text-left">Logout</a>
+                </li>
+                {% endif %}
+              </ul>
+            </nav>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    </div>
+
+    <div class="site-section py-0">
+      <div class="owl-carousel hero-slide owl-style">
+
+        {% if not session.username %}
+        <div class="site-section">
+          <div class="container">
+            <div class="half-post-entry d-block d-lg-flex bg-light">
+              <div class="img-bg" style="background-image: url('../static/images/big_img_1.jpg')"></div>
+              <div class="contents">
+                <span class="caption">Recent Posts</span>
+                <h2><a href="blog-single.html">New Needs to Meet Its Audiences Where They are</a></h2>
+                <p class="mb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate vero obcaecati natus adipisci necessitatibus eius, enim vel sit ad reiciendis. Enim praesentium magni delectus cum, tempore deserunt aliquid quaerat culpa nemo veritatis, iste adipisci excepturi consectetur doloribus aliquam accusantium beatae?</p>
+
+                <div class="post-meta">
+                  <span class="d-block"><a href="#">Dave Rogers</a> in <a href="#">Food</a></span>
+                  <span class="date-read">Jun 14 <span class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% else %}
+        {% for row in recent_posts %}
+        <div class="site-section">
+          <div class="container">
+            <div class="half-post-entry d-block d-lg-flex bg-light">
+              <div class="img-bg" style="background-image: url('{{ url_for('static', filename=recent_file_name[loop.index - 1]) }}'); height: 350px;"></div>
+              <div class="contents">
+                <span class="caption">Recent Posts</span>
+                <h2><a href="{{ url_for('article', post_id=row.post.id) }}">{{ row.post.title }}</a></h2>
+                <p class="mb-3">{{ row.post.text }}</p>
+                <div class="post-meta">
+                  <span class="d-block"><a href="#">{{ row.username }}</a> in <a href="#">{{ ", ".join(row.tags) }}</a></span>
+                  <span class="date-read">date <span class="mx-1">&bullet;</span>{{ row.post.date }}<span class="icon-star2"></span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+
+      </div>
+    </div>
+
+      <div class="site-section py-0">
+      <div class="owl-carousel hero-slide owl-style">
+
+
+	    	<div class="container">
+	    		<div class="row d-flex">
+	    			<div class="col-xl-8 py-5 px-md-5">
+	    				<div class="row pt-md-4">
+                            {% if session.username %}
+                            {% for row in posts %}
+			    			<div class="col-md-12">
+                                <div class="blog-entry d-md-flex">
+                                    <a href="single.html" class="img img-2" style="background-image: url('{{ url_for('static', filename=file_name[loop.index - 1]) }}');"></a>
+                                    <div class="text text-2 pl-md-4">
+				                        <h3 class="mb-2"><a href="{{ url_for('article', post_id=row.post.id) }}">{{ row.post.title }}</a></h3>
+				                        <div class="meta-wrap">
+                                            <p class="meta">
+				              		            <span><i class="icon-calendar mr-2"></i>{{ row.post.date }}</span>
+				              		            <span><a href="single.html"><i class="icon-folder-o mr-2"></i>{{ ", ".join(row.tags) }}</a></span>
+				              	            </p>
+			              	            </div>
+				                        <p class="mb-4">{{ row.post.text }}</p>
+				                        <p><a href="{{ url_for('article', post_id=row.post.id) }}" class="btn-custom" style="color: #0d95e8">Read More<span class="ion-ios-arrow-forward"></span></a></p>
+				                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                            {% else %}
+                            <div class="col-md-12">
+                                <div class="blog-entry d-md-flex">
+                                    <a href="single.html" class="img img-2" style="background-image: url('../static/images/image_2.jpg');"></a>
+                                    <div class="text text-2 pl-md-4">
+				                    <h3 class="mb-2"><a href="single.html">Great Things Never Came from Comfort Zone</a></h3>
+				                    <div class="meta-wrap">
+                                        <p class="meta">
+				              		        <span><i class="icon-calendar mr-2"></i>June 28, 2019</span>
+				              		        <span><a href="single.html"><i class="icon-folder-o mr-2"></i>Travel</a></span>
+				              	        </p>
+                                    </div>
+				                    <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+				                    <p><a href="#" class="btn-custom" style="color: #0d95e8">Read More <span class="ion-ios-arrow-forward"></span></a></p>
+                                    </div>
+								</div>
+                            </div>
+                            {% endif %}
+			    		</div><!-- END-->
+
+
+                        <div class="row">
+                          <div class="col">
+                            <div class="block-27">
+                              <ul>
+                                <li><a href="#" style="color: #0d95e8">&lt;</a></li>
+                                <li class="active" style="color: #0d95e8"><span>1</span></li>
+                                <li><a href="#" style="color: #0d95e8">2</a></li>
+                                <li><a href="#" style="color: #0d95e8">3</a></li>
+                                <li><a href="#" style="color: #0d95e8">4</a></li>
+                                <li><a href="#" style="color: #0d95e8">5</a></li>
+                                <li><a href="#" style="color: #0d95e8">&gt;</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+
+                </div>
+                <div class="col-xl-4 sidebar bg-light pt-5">
+	            <div class="sidebar-box pt-md-4">
+	              <form action="#" class="search-form">
+	                <div class="form-group">
+	                  <span class="icon icon-search"></span>
+	                  <input type="text" class="form-control" placeholder="Type a keyword and hit enter">
+	                </div>
+	              </form>
+	            </div>
+	            <div class="sidebar-box">
+	            	<h3 class="sidebar-heading">Categories</h3>
+	              <ul class="categories">
+	                <li><a href="#">Fashion <span>(6)</span></a></li>
+	                <li><a href="#">Technology <span>(8)</span></a></li>
+	                <li><a href="#">Travel <span>(2)</span></a></li>
+	                <li><a href="#">Food <span>(2)</span></a></li>
+	                <li><a href="#">Photography <span>(7)</span></a></li>
+	              </ul>
+	            </div>
+
+	            <div class="sidebar-box">
+	              <h3 class="sidebar-heading">Articles Recommendés</h3>
+
+                  {% if session.username %}
+                  {% for row in similar_posts %}
+	              <div class="block-21 mb-4 d-flex">
+	                <a class="blog-img mr-4" style="background-image: url('{{ url_for('static', filename=similar_file_name[loop.index - 1]) }}');"></a>
+	                <div class="text">
+	                  <h3 class="heading"><a href="{{ url_for('article', post_id=row.post.id) }}">{{ row.post.title }}</a></h3>
+	                  <div class="meta">
+	                    <div><span class="icon-calendar mr-2"></span>{{ row.post.date }}</div>
+	                    <div><span class="icon-person mr-2"></span>{{ similar_user }}</div>
+	                  </div>
+	                </div>
+	              </div>
+                  {% endfor %}
+
+                  {% else %}
+	              <div class="block-21 mb-4 d-flex">
+	                <a class="blog-img mr-4" style="background-image: url('{{ url_for('static', filename='images/image_2.jpg') }}');"></a>
+	                <div class="text">
+	                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control</a></h3>
+	                  <div class="meta">
+	                    <div><a href="#"><span class="icon-calendar"></span> June 28, 2019</a></div>
+	                    <div><a href="#"><span class="icon-person"></span> Dave Lewis</a></div>
+	                  </div>
+	                </div>
+	              </div>
+                  {% endif %}
+	            </div>
+
+	            <div class="sidebar-box">
+	              <h3 class="sidebar-heading">Tag Cloud</h3>
+	              <ul class="tagcloud">
+	                <a href="#" class="tag-cloud-link">animals</a>
+	                <a href="#" class="tag-cloud-link">human</a>
+	                <a href="#" class="tag-cloud-link">people</a>
+	                <a href="#" class="tag-cloud-link">cat</a>
+	                <a href="#" class="tag-cloud-link">dog</a>
+	                <a href="#" class="tag-cloud-link">nature</a>
+	                <a href="#" class="tag-cloud-link">leaves</a>
+	                <a href="#" class="tag-cloud-link">food</a>
+	              </ul>
+	            </div>
+
+							<div class="sidebar-box subs-wrap img py-4" style="background-image: url('{{ url_for('static', filename='images/bg_1.jpg') }}');">
+								<div class="overlay"></div>
+								<h3 class="mb-4 sidebar-heading">Newsletter</h3>
+								<p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia</p>
+	              <form action="#" class="subscribe-form">
+	                <div class="form-group">
+	                  <input type="text" class="form-control" placeholder="Email Address">
+	                  <input type="submit" value="Subscribe" class="mt-2 btn btn-white submit">
+	                </div>
+	              </form>
+	            </div>
+
+	            <div class="sidebar-box">
+	            	<h3 class="sidebar-heading">Archives</h3>
+	              <ul class="categories">
+	              	<li><a href="#">Decob14 2018 <span>(10)</span></a></li>
+	                <li><a href="#">September 2018 <span>(6)</span></a></li>
+	                <li><a href="#">August 2018 <span>(8)</span></a></li>
+	                <li><a href="#">July 2018 <span>(2)</span></a></li>
+	                <li><a href="#">June 2018 <span>(7)</span></a></li>
+	                <li><a href="#">May 2018 <span>(5)</span></a></li>
+	              </ul>
+	            </div>
+
+
+	            <div class="sidebar-box">
+	              <h3 class="sidebar-heading">Paragraph</h3>
+	              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut.</p>
+	            </div>
+	          </div><!-- END COL -->
+	    		</div>
+	    	</div>
+              </section>
+		</div><!-- END COLORLIB-MAIN -->
+
+
+
+    <div class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="copyright">
+                <p>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank"  style="color: #0d95e8">My Blog</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <!-- .site-wrap -->
+
+
+
+  <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery-migrate-3.0.1.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery-ui.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.stellar.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.countdown.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap-datepicker.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/aos.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.fancybox.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.sticky.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.mb.YTPlayer.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+</html>
