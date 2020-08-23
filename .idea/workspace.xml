@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5b97e2ff-9572-45be-8c75-e5f0f81a915b" name="Default Changelist" comment="" />
+    <list default="true" id="5b97e2ff-9572-45be-8c75-e5f0f81a915b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/blog/emails.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog/static/css/test.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog/static/images/fanstastique.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog/static/images/fusee.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog/static/images/harry_potter.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog/static/images/microsoft.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog/static/images/ranger.jfif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog/static/images/steve-jobs.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog/templates/search.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,13 +24,31 @@
       <list>
         <option value="Flask Main" />
         <option value="SCSS File" />
+        <option value="HTML File" />
+        <option value="Python Script" />
         <option value="CSS File" />
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="C:\Users\Omar\PycharmProjects\Neo4j_Beta\.idea" />
+      </set>
+    </option>
+  </component>
   <component name="ProjectId" id="1ZYMtgs62zanEMn52ULTpGehyQb" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="D:/Users/Omar/Documents/flasklogin_neo4j-master" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -40,7 +69,29 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.run">
+  <component name="RunManager" selected="Python.emails">
+    <configuration name="emails" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Neo4j_Beta" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/blog" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/blog/emails.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="run" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Neo4j_Beta" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -55,6 +106,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/run.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="send" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Neo4j_Beta" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/blog" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Omar\PycharmProjects\Neo4j_Beta\blog\emails.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -81,6 +154,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.run" />
+        <item itemvalue="Python.emails" />
+        <item itemvalue="Python.send" />
       </list>
     </recent_temporary>
   </component>
@@ -94,14 +169,44 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1585011790091</updated>
-      <workItem from="1585011828571" duration="102933000" />
+      <workItem from="1585011828571" duration="103774000" />
+      <workItem from="1585783843156" duration="28263000" />
+      <workItem from="1585917144895" duration="374000" />
+      <workItem from="1586344999556" duration="1819000" />
+      <workItem from="1586706430844" duration="1755000" />
+      <workItem from="1586806342067" duration="14000" />
+      <workItem from="1592082619857" duration="114000" />
+      <workItem from="1592146333186" duration="29000" />
+      <workItem from="1595790699350" duration="17566000" />
+      <workItem from="1595855783220" duration="1153000" />
+      <workItem from="1596567423361" duration="120075000" />
+      <workItem from="1597022453330" duration="1011000" />
+      <workItem from="1597970711714" duration="47354000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Neo4j_Beta$run.coverage" NAME="run Coverage Results" MODIFIED="1585269553137" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Neo4j_Beta$emails.coverage" NAME="emails Coverage Results" MODIFIED="1598108357727" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/blog" />
+    <SUITE FILE_PATH="coverage/Neo4j_Beta$send.coverage" NAME="send Coverage Results" MODIFIED="1597008332606" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/blog" />
+    <SUITE FILE_PATH="coverage/Neo4j_Beta$run.coverage" NAME="run Coverage Results" MODIFIED="1598108452967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

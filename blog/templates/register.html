@@ -28,6 +28,11 @@
 
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style1.css') }}">
 
+    <style type="text/css">
+        a:hover { color: #0d95e8 !important }
+        input.btn:active, input.btn:focus, input.btn:focus:active { background-image: none !important; outline: 0; box-shadow: none !important; }
+    </style>
+
 
 
 </head>
@@ -60,15 +65,14 @@
 
           </div>
           <div class="col-12 col-lg-6 ml-auto d-flex">
-            <div class="ml-md-auto top-social d-none d-lg-inline-block">
-            </div>
+            {% if session.username %}
             <form action="#" class="search-form d-inline-block">
-
               <div class="d-flex">
                 <input type="email" class="form-control" placeholder="Search...">
-                <button type="submit" class="btn btn-secondary" style="background-color: #0d95e8; border-color: #0d95e8" ><span class="icon-search"></span></button>
+                <button type="submit" class="btn btn-primary" ><span class="icon-search"></span></button>
               </div>
             </form>
+            {% endif %}
 
 
           </div>
@@ -89,7 +93,7 @@
           <div class="mr-auto">
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none pl-0 d-lg-block">
-                <li class="active">
+                <li>
                   <a href="{{ url_for('index') }}" class="nav-link text-left">Home</a>
                 </li>
                 {% if not session.username %}
@@ -134,32 +138,32 @@
             <form action="{{ url_for('register') }}" method="post">
                   <div class="row">
                       <div class="col-md-6 form-group">
-                          <label>Firstname</label>
+                          <label>Firstname *</label>
                           <input type="text" class="form-control input-lg" name="firstname" required>
                       </div>
                       <div class="col-md-6 form-group">
-                          <label>Lastname</label>
+                          <label>Lastname *</label>
                           <input type="text" class="form-control input-lg" name="lastname" required>
                       </div>
                   </div>
                   <div class="row">
                       <div class="col-md-6 form-group">
-                          <label>Username</label>
+                          <label>Username *</label>
                           <input type="text" class="form-control input-lg" name="username" required>
                       </div>
                       <div class="col-md-6 form-group">
-                          <label>Password</label>
+                          <label>Password *</label>
                           <input type="password" class="form-control input-lg" name="password" required>
                       </div>
                   </div>
                   <div class="row">
                       <div class="col-md-6 form-group">
-                          <label>Profession</label>
-                          <input type="text" class="form-control input-lg" name="profession" required>
+                          <label>Confirmation de mot de passe *</label>
+                          <input type="password" class="form-control input-lg" required>
                       </div>
                       <div class="col-md-6 form-group">
-                          <label>Country</label>
-                          <input type="text" class="form-control input-lg" name="country">
+                          <label>Email *</label>
+                          <input type="email" class="form-control input-lg" name="email" required>
                       </div>
                   </div><br>
                   <div class="row">
@@ -178,27 +182,6 @@
 
       </div>
     </div>
-
-
-
-    <div class="footer">
-      <div class="container">
-
-
-        <div class="row">
-          <div class="col-12">
-            <div class="copyright">
-                <p>
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank"  style="color: #0d95e8">My Blog</a>
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
 
   </div>
   <!-- .site-wrap -->

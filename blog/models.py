@@ -1,6 +1,11 @@
+from msilib.schema import Property
+
+from flask import Flask
+from flask_login._compat import unicode
 from py2neo import Graph, Node, Relationship, authenticate
 from passlib.hash import bcrypt
 from datetime import datetime, date
+from flask_login import UserMixin, login_manager
 import uuid
 
 authenticate("localhost:7474","neo4j","lpmss1998")
@@ -16,14 +21,33 @@ def timestamp():
 def date():
     return datetime.now().strftime('%Y-%m-%d')
 
+class User(UserMixin):
 
-class User():
-    def __init__(self, username, firstname, lastname, profession, country):
+
+    def is_active(self):
+        return True
+
+
+    def is_authenticated(self):
+        return True
+
+
+    def is_anonymous(self):
+        return False
+
+
+    def __init__(self, username, firstname, lastname, email):
         self.username = username
         self.firstname = firstname
         self.lastname = lastname
-        self.profession = profession
-        self.country = country
+        self.email = email
+        self.subscribe = bool()
+
+
+    def get_id(self, username):
+        query = 'match (n:User) where n.username={username} return ID(n)'
+        id = graph.cypher.execute(query, username=username)
+        return id
 
     def find(self):
         user = graph.find_one('User', 'username', self.username)
@@ -31,7 +55,7 @@ class User():
 
     def register(self, password):
         if not self.find():
-            user = Node('User', username=self.username, password=bcrypt.encrypt(password), firstname=self.firstname, lastname=self.lastname, profession=self.profession, country=self.country)
+            user = Node('User', username=self.username, password=bcrypt.encrypt(password), firstname=self.firstname, lastname=self.lastname, email=self.email, subscribe=self.subscribe)
             graph.create(user)
             return True
         else:
@@ -140,10 +164,20 @@ class User():
 
         return {'likes':likes, 'tags':tags}
 
+
+def get_subscribe_users():
+    query = '''
+    MATCH (user:User) WHERE user.subscribe = true
+    RETURN user.username AS username, user.email AS email
+    '''
+
+    return graph.cypher.execute(query)
+
+
 def get_all_posts(n):
     query = '''
     MATCH (user:User)-[:PUBLISHED]->(post:Post)<-[:TAGGED]-(tag:Tag)
-    RETURN user.username AS username, post, COLLECT(tag.name) AS tags
+    RETURN user.username AS username, post, COLLECT(tag.name) AS tags, count(*) AS appearances
     ORDER BY post.timestamp DESC LIMIT {n}
     '''
 
@@ -168,3 +202,37 @@ def count_comment(post_id):
         '''
 
     return graph.cypher.execute(query, post_id=post_id)
+
+def get_tag_categorie(n):
+
+    query = '''
+    MATCH (tag:Tag)-[:TAGGED]->(post:Post)
+    RETURN DISTINCT tag.name AS tags
+    ORDER BY tag.name DESC LIMIT {n}
+    '''
+
+    return graph.cypher.execute(query, n=n)
+
+def get_post_categorie(tag, n):
+
+    query = '''
+    MATCH (user:User)-[:PUBLISHED]->(post:Post)<-[:TAGGED]-(tag:Tag)
+    WHERE tag.name = {tag}
+    RETURN user.username AS username, post
+    ORDER BY post.timestamp DESC LIMIT {n}
+    '''
+
+    return graph.cypher.execute(query, tag=tag, n=n)
+
+
+def get_search(search, n):
+
+    query = '''
+    MATCH (user:User)-[:PUBLISHED]->(post:Post)<-[:TAGGED]-(tag:Tag)
+    WHERE LOWER(tag.name) CONTAINS LOWER({search}) OR LOWER(post.text) 
+    CONTAINS LOWER ({search}) OR LOWER(user.username) CONTAINS LOWER ({search}) 
+    RETURN user.username AS username, post, COLLECT(tag.name) AS tags
+    ORDER BY post.timestamp DESC LIMIT {n}
+    '''
+
+    return graph.cypher.execute(query, search=search, n=n)

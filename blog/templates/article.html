@@ -28,6 +28,11 @@
 
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style1.css') }}">
 
+    <style type="text/css">
+        a:hover { color: #0d95e8 !important }
+        input.btn { box-shadow: #0d95e8 !important; }
+    </style>
+
 
 
 
@@ -61,20 +66,14 @@
 
           </div>
           <div class="col-12 col-lg-6 ml-auto d-flex">
-            <div class="ml-md-auto top-social d-none d-lg-inline-block">
-              <a href="#" class="d-inline-block p-3"><span class="icon-facebook"></span></a>
-                <a href="#" class="d-inline-block p-3"><span class="icon-twitter"></span></a>
-                <a href="#" class="d-inline-block p-3"><span class="icon-instagram"></span></a>
-            </div>
-            <form action="#" class="search-form d-inline-block">
+            <div class="ml-md-auto top-social d-none d-lg-inline-block"></div>
 
+            <form action="{{ url_for('search') }}" method="post" class="search-form d-inline-block">
               <div class="d-flex">
-                <input type="email" class="form-control" placeholder="Search...">
+                <input type="text" name="search" class="form-control" placeholder="Search...">
                 <button type="submit" class="btn btn-primary" style="background-color: #0d95e8 !important; border-color: #0d95e8;"><span class="icon-search"></span></button>
               </div>
             </form>
-
-            
           </div>
           <div class="col-6 d-block d-lg-none text-right">
             
@@ -93,7 +92,7 @@
           <div class="mr-auto">
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none pl-0 d-lg-block">
-                <li class="active">
+                <li>
                   <a href="{{ url_for('index') }}" class="nav-link text-left">Home</a>
                 </li>
                 {% if not session.username %}
@@ -104,9 +103,6 @@
                   <a href="{{ url_for('register') }}" class="nav-link text-left">Register</a>
                 </li>
                 {% else %}
-                <li>
-                  <a href="{{ url_for('categorie') }}" class="nav-link text-left">Catégories</a>
-                </li>
                 <li>
                     <a href="{{ url_for('add_post') }}" class="nav-link text-left">Poster</a>
                 </li>
@@ -198,55 +194,20 @@
             {% if session.username %}
             {% for row in similar_posts %}
             <div class="trend-entry d-flex">
-              <div class="number align-self-start">01</div>
+              <div class="number align-self-start">0{{ loop.index }}</div>
               <div class="trend-contents">
                 <h2><a href="{{ url_for('article', post_id=row.post.id) }}">{{ row.post.title }}</a></h2>
                 <div class="post-meta">
-                  <span class="d-block">{{ similar_user }} in <a href="#">News</a></span>
+                  <span class="d-block">{{ similar_user }} in <span href="#">{{ ", ".join(row.tags) }}</span></span>
                   <span class="date-read">date <span class="mx-1">&bullet;</span>{{ row.post.date }}<span class="icon-star2"></span></span>
                   <span><a href="{{ url_for('like_post', post_id=row.post.id) }}"><i class="icon-heart mr-2" aria-hidden="true"></i></a>like</span>
                 </div>
               </div>
             </div>
             {% endfor %}
-
-            {% else %}
-            <div class="trend-entry d-flex pl-0">
-              <div class="number align-self-start">01</div>
-              <div class="trend-contents">
-                <h2><a href="blog-single.html">News Needs to Meet Its Audiences Where They Are</a></h2>
-                <div class="post-meta">
-                  <span class="d-block"><a href="#">Dave Rogers</a> in <a href="#">News</a></span>
-                  <span class="date-read">Jun 14 <span class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
-                </div>
-              </div>
-            </div>
             {% endif %}
-            <p>
-              <a href="" class="more" style="color: #0d95e8;">See All Popular <span class="icon-keyboard_arrow_right"></span></a>
-            </p>
           </div>
-
-
         </div>
-        
-      </div>
-    </div>
-
-    <div class="site-section subscribe bg-light">
-      <div class="container">
-        <form action="#" class="row align-items-center">
-          <div class="col-md-5 mr-auto">
-            <h2>Newsletter Subcribe</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis aspernatur ut at quae omnis pariatur obcaecati possimus nisi ea iste!</p>
-          </div>
-          <div class="col-md-6 ml-auto">
-            <div class="d-flex">
-              <input type="email" class="form-control" placeholder="Enter your email">
-              <button type="submit" class="btn btn-primary" style="background-color: #0d95e8 !important; border-color: #0d95e8;"><span class="icon-paper-plane"></span></button>
-            </div>
-          </div>
-        </form>
       </div>
     </div>
 

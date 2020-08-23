@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/flaticon.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/icomoon.css') }}">
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/style1.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/test.css') }}">
       <!--------------------------------------------------------------------------------------------------------------->
 
 
@@ -82,16 +82,15 @@
 
           </div>
           <div class="col-12 col-lg-6 ml-auto d-flex">
-            <div class="ml-md-auto top-social d-none d-lg-inline-block">
-            </div>
-            <form action="#" class="search-form d-inline-block">
-
+              {% if session.username %}
+            <div class="ml-md-auto top-social d-none d-lg-inline-block"></div>
+            <form action="{{ url_for('search') }}" method="post" class="search-form d-inline-block">
               <div class="d-flex">
-                <input type="email" class="form-control" placeholder="Search...">
-                <button type="submit" class="btn btn-primary" ><span class="icon-search"></span></button>
+                <input type="text" name="search" class="form-control" placeholder="Search...">
+                <button type="submit" class="btn btn-primary" style="background-color: #0d95e8 !important; border-color: #0d95e8;"><span class="icon-search"></span></button>
               </div>
             </form>
-
+            {% endif %}
 
           </div>
           <div class="col-6 d-block d-lg-none text-right">
@@ -111,7 +110,7 @@
           <div class="mr-auto">
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none pl-0 d-lg-block">
-                <li class="active">
+                <li>
                   <a href="{{ url_for('index') }}" class="nav-link text-left">Home</a>
                 </li>
                 {% if not session.username %}
@@ -122,9 +121,6 @@
                   <a href="{{ url_for('register') }}" class="nav-link text-left">Register</a>
                 </li>
                 {% else %}
-                <li>
-                  <a href="{{ url_for('categorie') }}" class="nav-link text-left">Catégories</a>
-                </li>
                 <li>
                     <a href="{{ url_for('add_post') }}" class="nav-link text-left">Poster</a>
                 </li>
@@ -153,11 +149,11 @@
               <div class="img-bg" style="background-image: url('../static/images/big_img_1.jpg')"></div>
               <div class="contents">
                 <span class="caption">Recent Posts</span>
-                <h2><a href="blog-single.html">New Needs to Meet Its Audiences Where They are</a></h2>
+                <h2><span>New Needs to Meet Its Audiences Where They are</span></h2>
                 <p class="mb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate vero obcaecati natus adipisci necessitatibus eius, enim vel sit ad reiciendis. Enim praesentium magni delectus cum, tempore deserunt aliquid quaerat culpa nemo veritatis, iste adipisci excepturi consectetur doloribus aliquam accusantium beatae?</p>
 
                 <div class="post-meta">
-                  <span class="d-block"><a href="#">Dave Rogers</a> in <a href="#">Food</a></span>
+                  <span class="d-block"><span>Dave Rogers</span> in <span>Food</span></span>
                   <span class="date-read">Jun 14 <span class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
                 </div>
               </div>
@@ -174,9 +170,9 @@
               <div class="contents">
                 <span class="caption">Recent Posts</span>
                 <h2><a href="{{ url_for('article', post_id=row.post.id) }}">{{ row.post.title }}</a></h2>
-                <p class="mb-3">{{ row.post.text }}</p>
+                <p class="mb-3" style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical;">{{ row.post.text }}</p>
                 <div class="post-meta">
-                  <span class="d-block"><a href="#">{{ row.username }}</a> in <a href="#">{{ ", ".join(row.tags) }}</a></span>
+                  <span class="d-block"><span>{{ row.username }}</span> in <span>{{ ", ".join(row.tags) }}</span></span>
                   <span class="date-read">date <span class="mx-1">&bullet;</span>{{ row.post.date }}<span class="icon-star2"></span></span>
                 </div>
               </div>
@@ -184,7 +180,7 @@
           </div>
         </div>
         {% endfor %}
-        {% endif %}
+
 
 
       </div>
@@ -198,44 +194,24 @@
 	    		<div class="row d-flex">
 	    			<div class="col-xl-8 py-5 px-md-5">
 	    				<div class="row pt-md-4">
-                            {% if session.username %}
                             {% for row in posts %}
 			    			<div class="col-md-12">
                                 <div class="blog-entry d-md-flex">
-                                    <a href="single.html" class="img img-2" style="background-image: url('{{ url_for('static', filename=file_name[loop.index - 1]) }}');"></a>
+                                    <a href="{{ url_for('article', post_id=row.post.id) }}" class="img img-2" style="background-image: url('{{ url_for('static', filename=file_name[loop.index - 1]) }}');"></a>
                                     <div class="text text-2 pl-md-4">
 				                        <h3 class="mb-2"><a href="{{ url_for('article', post_id=row.post.id) }}">{{ row.post.title }}</a></h3>
 				                        <div class="meta-wrap">
                                             <p class="meta">
 				              		            <span><i class="icon-calendar mr-2"></i>{{ row.post.date }}</span>
-				              		            <span><a href="single.html"><i class="icon-folder-o mr-2"></i>{{ ", ".join(row.tags) }}</a></span>
+				              		            <span><span><i class="icon-folder-o mr-2"></i>{{ ", ".join(row.tags) }}</span></span>
 				              	            </p>
 			              	            </div>
-				                        <p class="mb-4">{{ row.post.text }}</p>
+				                        <p class="mb-4" style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">{{ row.post.text }}</p>
 				                        <p><a href="{{ url_for('article', post_id=row.post.id) }}" class="btn-custom" style="color: #0d95e8">Read More<span class="ion-ios-arrow-forward"></span></a></p>
 				                    </div>
                                 </div>
                             </div>
                             {% endfor %}
-
-                            {% else %}
-                            <div class="col-md-12">
-                                <div class="blog-entry d-md-flex">
-                                    <a href="single.html" class="img img-2" style="background-image: url('../static/images/image_2.jpg');"></a>
-                                    <div class="text text-2 pl-md-4">
-				                    <h3 class="mb-2"><a href="single.html">Great Things Never Came from Comfort Zone</a></h3>
-				                    <div class="meta-wrap">
-                                        <p class="meta">
-				              		        <span><i class="icon-calendar mr-2"></i>June 28, 2019</span>
-				              		        <span><a href="single.html"><i class="icon-folder-o mr-2"></i>Travel</a></span>
-				              	        </p>
-                                    </div>
-				                    <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-				                    <p><a href="#" class="btn-custom" style="color: #0d95e8">Read More <span class="ion-ios-arrow-forward"></span></a></p>
-                                    </div>
-								</div>
-                            </div>
-                            {% endif %}
 			    		</div><!-- END-->
 
 
@@ -243,20 +219,22 @@
                           <div class="col">
                             <div class="block-27">
                               <ul>
-                                <li><a href="#" style="color: #0d95e8">&lt;</a></li>
-                                <li class="active" style="color: #0d95e8"><span>1</span></li>
-                                <li><a href="#" style="color: #0d95e8">2</a></li>
-                                <li><a href="#" style="color: #0d95e8">3</a></li>
-                                <li><a href="#" style="color: #0d95e8">4</a></li>
-                                <li><a href="#" style="color: #0d95e8">5</a></li>
-                                <li><a href="#" style="color: #0d95e8">&gt;</a></li>
+                                <li><a href="#" style="color: #0d95e8">&laquo;</a></li>
+                                    {% for i in range(length) %}
+                                        <li><a href="{{ url_for('page', page_num = i + 1) }}" style="color: #0d95e8">{{ i + 1 }}</a></li>
+                                    {% endfor %}
+                                <li><a href="#" style="color: #0d95e8">&raquo;</a></li>
+
                               </ul>
                             </div>
                           </div>
                         </div>
-
                 </div>
+
+
+
                 <div class="col-xl-4 sidebar bg-light pt-5">
+
 	            <div class="sidebar-box pt-md-4">
 	              <form action="#" class="search-form">
 	                <div class="form-group">
@@ -265,90 +243,54 @@
 	                </div>
 	              </form>
 	            </div>
+
 	            <div class="sidebar-box">
 	            	<h3 class="sidebar-heading">Categories</h3>
 	              <ul class="categories">
-	                <li><a href="#">Fashion <span>(6)</span></a></li>
-	                <li><a href="#">Technology <span>(8)</span></a></li>
-	                <li><a href="#">Travel <span>(2)</span></a></li>
-	                <li><a href="#">Food <span>(2)</span></a></li>
-	                <li><a href="#">Photography <span>(7)</span></a></li>
+                        {% for row in tag %}
+                        <li><a href="{{ url_for('categorie', tag=row) }}">{{ row }} <span>({{ tag_lenght[loop.index - 1] }})</span></a></li>
+                        {% endfor %}
 	              </ul>
 	            </div>
 
 	            <div class="sidebar-box">
 	              <h3 class="sidebar-heading">Articles Recommendés</h3>
-
-                  {% if session.username %}
-                  {% for row in similar_posts %}
-	              <div class="block-21 mb-4 d-flex">
-	                <a class="blog-img mr-4" style="background-image: url('{{ url_for('static', filename=similar_file_name[loop.index - 1]) }}');"></a>
-	                <div class="text">
-	                  <h3 class="heading"><a href="{{ url_for('article', post_id=row.post.id) }}">{{ row.post.title }}</a></h3>
-	                  <div class="meta">
-	                    <div><span class="icon-calendar mr-2"></span>{{ row.post.date }}</div>
-	                    <div><span class="icon-person mr-2"></span>{{ similar_user }}</div>
-	                  </div>
-	                </div>
-	              </div>
-                  {% endfor %}
-
-                  {% else %}
-	              <div class="block-21 mb-4 d-flex">
-	                <a class="blog-img mr-4" style="background-image: url('{{ url_for('static', filename='images/image_2.jpg') }}');"></a>
-	                <div class="text">
-	                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control</a></h3>
-	                  <div class="meta">
-	                    <div><a href="#"><span class="icon-calendar"></span> June 28, 2019</a></div>
-	                    <div><a href="#"><span class="icon-person"></span> Dave Lewis</a></div>
-	                  </div>
-	                </div>
-	              </div>
-                  {% endif %}
+                      {% for list in similar_posts %}
+                      <div class="block-21 mb-4 d-flex">
+                        <a class="blog-img mr-4" style="background-image: url('{{ url_for('static', filename=similar_file_name[loop.index - 1]) }}');"></a>
+                        <div class="text">
+                            {% for row in list %}
+                          <h3 class="heading"><a href="{{ url_for('article', post_id=row.post.id) }}">{{ row.post.title }}</a></h3>
+                          <div class="meta">
+                            <div><span class="icon-calendar mr-2"></span>{{ row.post.date }}</div>
+                              {% endfor %}
+                            <div><span class="icon-person mr-2"></span>{{ similar_user[loop.index - 1].username }}</div>
+                          </div>
+                        </div>
+                      </div>
+                    {% endfor %}
 	            </div>
 
-	            <div class="sidebar-box">
-	              <h3 class="sidebar-heading">Tag Cloud</h3>
-	              <ul class="tagcloud">
-	                <a href="#" class="tag-cloud-link">animals</a>
-	                <a href="#" class="tag-cloud-link">human</a>
-	                <a href="#" class="tag-cloud-link">people</a>
-	                <a href="#" class="tag-cloud-link">cat</a>
-	                <a href="#" class="tag-cloud-link">dog</a>
-	                <a href="#" class="tag-cloud-link">nature</a>
-	                <a href="#" class="tag-cloud-link">leaves</a>
-	                <a href="#" class="tag-cloud-link">food</a>
-	              </ul>
-	            </div>
 
-							<div class="sidebar-box subs-wrap img py-4" style="background-image: url('{{ url_for('static', filename='images/bg_1.jpg') }}');">
-								<div class="overlay"></div>
-								<h3 class="mb-4 sidebar-heading">Newsletter</h3>
-								<p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia</p>
-	              <form action="#" class="subscribe-form">
-	                <div class="form-group">
-	                  <input type="text" class="form-control" placeholder="Email Address">
-	                  <input type="submit" value="Subscribe" class="mt-2 btn btn-white submit">
-	                </div>
-	              </form>
-	            </div>
-
-	            <div class="sidebar-box">
-	            	<h3 class="sidebar-heading">Archives</h3>
-	              <ul class="categories">
-	              	<li><a href="#">Decob14 2018 <span>(10)</span></a></li>
-	                <li><a href="#">September 2018 <span>(6)</span></a></li>
-	                <li><a href="#">August 2018 <span>(8)</span></a></li>
-	                <li><a href="#">July 2018 <span>(2)</span></a></li>
-	                <li><a href="#">June 2018 <span>(7)</span></a></li>
-	                <li><a href="#">May 2018 <span>(5)</span></a></li>
-	              </ul>
+                <div class="sidebar-box subs-wrap img py-4" style="background-image: url('{{ url_for('static', filename='images/bg_1.jpg') }}');">
+					<div class="overlay"></div>
+					<h3 class="mb-4 sidebar-heading">Newsletter</h3>
+					<p class="mb-4">Rester notifié des récentes publications.</p>
+                    <form action="{{ url_for('subscribe') }}" method="post" class="subscribe-form">
+	                    <div class="form-group">
+                        {% if not subscribe %}
+	                        <input type="submit" value="Subscribe" class="mt-2 btn btn-white submit">
+                        {% else %}
+                            <input type="submit" value="Unsubscribe" class="mt-2 btn btn-white unsubscribe">
+                        {% endif %}
+	                    </div>
+	                </form>
 	            </div>
 
 
 	            <div class="sidebar-box">
-	              <h3 class="sidebar-heading">Paragraph</h3>
-	              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut.</p>
+	              <h3 class="sidebar-heading">Description</h3>
+	              <p>Mini blog de partage de ressources pertinentes. Connecter vous regulierement pour etre informer sur les sujets qui vous interessent.</p>
 	            </div>
 	          </div><!-- END COL -->
 	    		</div>
@@ -373,6 +315,7 @@
         </div>
       </div>
     </div>
+      {% endif %}
 
 
   </div>
