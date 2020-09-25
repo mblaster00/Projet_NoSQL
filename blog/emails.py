@@ -13,18 +13,22 @@ app_root = os.path.dirname(os.path.abspath(__file__))
 
 def send_async_email(app, msg):
 
-    with app.app_context():
-        users = models.get_subscribe_users()
-        email_user = 'mountainblaster00@gmail.com'
-        email_receiver = []
-        for row in users:
-            email_receiver.append(row.email)
+    try:
+        with app.app_context():
+            users = models.get_subscribe_users()
+            email_user = 'mountainblaster00@gmail.com'
+            email_receiver = []
+            for row in users:
+                email_receiver.append(row.email)
 
-        server = smtplib.SMTP('smtp.gmail.com', 587)
-        server.starttls()
-        server.login(email_user, 'Vegeta#5')
-        server.sendmail(email_user, email_receiver, msg.as_string())
-        server.quit()
+            server = smtplib.SMTP('smtp.gmail.com', 587)
+            server.starttls()
+            server.login(email_user, 'Vegeta#5')
+            server.sendmail(email_user, email_receiver, msg.as_string())
+            server.quit()
+
+    except smtplib.SMTPRecipientsRefused:
+        print('No users is subscribed.')
 
 
 def send_email():
@@ -40,10 +44,9 @@ def send_email():
               <head></head>
               <body>
                 <p>Hello!<br>
-                   How are you?<br>
-                   Il y a de nouvelles publications qui pourraient t'intéresser". Cliquez sur le sur ci-dessous pour y être rediriger<br>
-                   <a href="http://127.0.0.1:5000/">lien du site</a>.<br>
-                   Merci de vous être souscrit. :)
+                   Venez consulter les dernières publications qui vont surement vous plaire.
+                    Cliquez sur le lien ci-dessous pour être rediriger<br>
+                   <a href="http://127.0.0.1:5000/">lien du site</a>.
                 </p>
               </body>
             </html>"""
@@ -62,13 +65,12 @@ def send_email():
 
 
 first_email_time = dt.datetime.now()  # set your sending time in UTC
-interval = dt.timedelta(minutes=1)  # set the interval for sending the email
+interval = dt.timedelta(weeks=2)  # set the interval for sending the email
 send_time = first_email_time + interval
 
 
 while True:
     if send_time < dt.datetime.now():
         send_email()
-        print('email sent')
         send_time = send_time + interval
 

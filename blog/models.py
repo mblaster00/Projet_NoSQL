@@ -1,11 +1,7 @@
-from msilib.schema import Property
-
-from flask import Flask
-from flask_login._compat import unicode
 from py2neo import Graph, Node, Relationship, authenticate
 from passlib.hash import bcrypt
 from datetime import datetime, date
-from flask_login import UserMixin, login_manager
+from flask_login import UserMixin
 import uuid
 
 authenticate("localhost:7474","neo4j","lpmss1998")

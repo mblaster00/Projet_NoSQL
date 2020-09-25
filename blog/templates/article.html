@@ -30,7 +30,7 @@
 
     <style type="text/css">
         a:hover { color: #0d95e8 !important }
-        input.btn { box-shadow: #0d95e8 !important; }
+        input.btn:active, input.btn:focus, input.btn:focus:active { background-image: none !important; outline: 0; box-shadow: none !important; }
     </style>
 
 
@@ -57,9 +57,7 @@
       <div class="container">
         <div class="row align-items-center">
           <div class="col-12 col-lg-6 d-flex">
-            <a href="index.html" class="site-logo">
-              My Blog
-            </a>
+            <a href="{{ url_for('index') }}" class="site-logo">My Blog</a>
 
             <a href="#" class="ml-auto d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black"><span
                 class="icon-menu h3"></span></a>

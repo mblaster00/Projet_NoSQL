@@ -26,9 +26,10 @@ def load_user(id):
 def page(page_num):
 
     try:
-        posts = get_all_posts(10)
+        posts = get_all_posts(50)
         posts_page = posts[(page_num - 1) * 5:page_num * 5]
         length = len(posts)//5 + 1
+
 
         list = []
         for row in posts_page:
@@ -87,7 +88,7 @@ def page(page_num):
 
 
 
-        return render_template('index.html', posts=posts_page, file_name=list, length=length, subscribe=subscribe,
+        return render_template('index.html', posts=posts_page, file_name=list, length=length, current_page=page_num, subscribe=subscribe,
                                recent_posts=recent_posts, recent_file_name=recent_list, tag=tag_list, tag_lenght=tag_lenght,
                                similar_posts=list_post, similar_user=list_similar, similar_file_name=list_filename)
 
@@ -166,7 +167,7 @@ def index():
 
 
 
-        return render_template('index.html', posts=posts_page, file_name=list, length=length, subscribe=subscribe,
+        return render_template('index.html', posts=posts_page, file_name=list, length=length, current_page=1, subscribe=subscribe,
                                recent_posts=recent_posts, recent_file_name=recent_list, tag=tag_list, tag_lenght=tag_lenght,
                                similar_posts=list_post, similar_user=list_similar, similar_file_name=list_filename)
 
@@ -609,6 +610,5 @@ def subscribe():
         else:
             node['subscribe'] = True
             node.push()
-        print(node['subscribe'])
 
     return redirect(request.referrer)
