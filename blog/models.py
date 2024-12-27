@@ -4,7 +4,7 @@ from datetime import datetime, date
 from flask_login import UserMixin
 import uuid
 
-authenticate("localhost:7474","neo4j","lpmss1998")
+authenticate("localhost:7474","yourlogin","yourpassword")
 graph = Graph("http://localhost:7474/db/data/")
 
 
