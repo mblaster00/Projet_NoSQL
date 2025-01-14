@@ -7,7 +7,7 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'jfif'}
 
 import os
 app = Flask(__name__)
-app.secret_key = "Vegeta#5"
+app.secret_key = ""
 app_root = os.path.dirname(os.path.abspath(__file__))
 
 from flask_login import LoginManager
