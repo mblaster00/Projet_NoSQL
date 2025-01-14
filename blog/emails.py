@@ -8,7 +8,7 @@ from blog import models
 from threading import Thread
 
 app = Flask(__name__)
-app.secret_key = "Vegeta#5"
+app.secret_key = ""
 app_root = os.path.dirname(os.path.abspath(__file__))
 
 def send_async_email(app, msg):
